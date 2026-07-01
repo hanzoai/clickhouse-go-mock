@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	cmock "github.com/SigNoz/clickhouse-go-mock"
+	cmock "github.com/hanzoai/clickhouse-go-mock"
 )
 
 func main() {

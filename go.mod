@@ -1,4 +1,4 @@
-module github.com/SigNoz/clickhouse-go-mock
+module github.com/hanzoai/clickhouse-go-mock
 
 go 1.24.1
 

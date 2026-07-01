@@ -5,7 +5,7 @@ import (
 	"log"
 	"reflect"
 
-	cmock "github.com/SigNoz/clickhouse-go-mock"
+	cmock "github.com/hanzoai/clickhouse-go-mock"
 )
 
 func main() {
