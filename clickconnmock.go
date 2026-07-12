@@ -18,9 +18,9 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/ClickHouse/clickhouse-go/v2"
-	"github.com/ClickHouse/clickhouse-go/v2/lib/column"
-	"github.com/ClickHouse/clickhouse-go/v2/lib/driver"
+	clickhouse "github.com/hanzoai/datastore-go/v2"
+	"github.com/hanzoai/datastore-go/v2/lib/column"
+	"github.com/hanzoai/datastore-go/v2/lib/driver"
 	"github.com/DATA-DOG/go-sqlmock"
 )
 
@@ -158,7 +158,7 @@ func (c *clickhousemock) ExpectClose() *ExpectedClose {
 // Close a mock database driver connection. It may or may not
 // be called depending on the circumstances, but if it is called
 // there must be an *ExpectedClose expectation satisfied.
-// meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) Close() error {
 	c.drv.Lock()
 	defer c.drv.Unlock()
@@ -208,7 +208,7 @@ func (c *clickhousemock) ExpectStats() *ExpectedStats {
 	return e
 }
 
-// Stats meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// Stats meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) Stats() driver.Stats {
 	c.drv.Lock()
 	defer c.drv.Unlock()
@@ -247,7 +247,7 @@ func (c *clickhousemock) Stats() driver.Stats {
 	return expected.stats
 }
 
-// Ping meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// Ping meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) Ping(ctx context.Context) error {
 	if !c.monitorPings {
 		return nil
@@ -304,7 +304,7 @@ func (c *clickhousemock) ExpectAsyncInsert(expectedSQL string, expectedWait bool
 	return e
 }
 
-// AsyncInsert meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// AsyncInsert meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) AsyncInsert(ctx context.Context, query string, wait bool, args ...any) error {
 	ex, err := c.asyncInsert(ctx, query, wait)
 	if ex != nil {
@@ -372,7 +372,7 @@ func (c *clickhousemock) ExpectExec(expectedSQL string) *ExpectedExec {
 	return e
 }
 
-// Exec meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// Exec meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) Exec(ctx context.Context, query string, args ...any) error {
 	c.drv.Lock()
 	defer c.drv.Unlock()
@@ -422,7 +422,7 @@ func (c *clickhousemock) ExpectPrepareBatch(expectedSQL string) *ExpectedPrepare
 	return e
 }
 
-// PrepareBatch meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// PrepareBatch meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) PrepareBatch(ctx context.Context, query string, opts ...driver.PrepareBatchOption) (driver.Batch, error) {
 	ex, err := c.prepareBatch(ctx, query)
 	if ex != nil {
@@ -493,7 +493,7 @@ func (c *clickhousemock) ExpectQueryRow(expectedSQL string) *ExpectedQueryRow {
 	return e
 }
 
-// QueryRow meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// QueryRow meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) QueryRow(ctx context.Context, query string, args ...any) driver.Row {
 	ex, err := c.queryRow(ctx, query, args...)
 	if ex != nil {
@@ -562,7 +562,7 @@ func (c *clickhousemock) ExpectQuery(expectedSQL string) *ExpectedQuery {
 	return e
 }
 
-// Query meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// Query meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) Query(ctx context.Context, query string, args ...any) (driver.Rows, error) {
 	ex, err := c.query(ctx, query, args...)
 	if ex != nil {
@@ -637,7 +637,7 @@ func (c *clickhousemock) ExpectSelect(expectedSQL string) *ExpectedSelect {
 	return e
 }
 
-// Select meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// Select meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) Select(ctx context.Context, dest any, query string, args ...any) error {
 	// Implementation based on that of Select in clickhouse-go https://github.com/ClickHouse/clickhouse-go/blob/main/scan.go#L29
 	dstSlicePtr := reflect.ValueOf(dest)
@@ -789,7 +789,7 @@ func (c *clickhousemock) ExpectContributors() *ExpectedContributors {
 	return e
 }
 
-// Contributors meets https://pkg.go.dev/github.com/ClickHouse/clickhouse-go/v2/lib/driver#Conn interface
+// Contributors meets https://pkg.go.dev/github.com/hanzoai/datastore-go/v2/lib/driver#Conn interface
 func (c *clickhousemock) Contributors() []string {
 	c.drv.Lock()
 	defer c.drv.Unlock()

@@ -16,7 +16,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ClickHouse/clickhouse-go/v2"
+	clickhouse "github.com/hanzoai/datastore-go/v2"
 	"github.com/DATA-DOG/go-sqlmock"
 )
 

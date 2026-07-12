@@ -24,7 +24,7 @@ package mockhouse
 import (
 	"fmt"
 
-	"github.com/ClickHouse/clickhouse-go/v2/lib/proto"
+	"github.com/hanzoai/datastore-go/v2/lib/proto"
 )
 
 func scan(block *proto.Block, row int, dest ...any) error {

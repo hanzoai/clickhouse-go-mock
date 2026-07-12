@@ -27,9 +27,9 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/ClickHouse/clickhouse-go/v2/lib/column"
-	"github.com/ClickHouse/clickhouse-go/v2/lib/driver"
-	"github.com/ClickHouse/clickhouse-go/v2/lib/proto"
+	"github.com/hanzoai/datastore-go/v2/lib/column"
+	"github.com/hanzoai/datastore-go/v2/lib/driver"
+	"github.com/hanzoai/datastore-go/v2/lib/proto"
 )
 
 type Rows struct {
