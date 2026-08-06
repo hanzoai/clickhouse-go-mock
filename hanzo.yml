@@ -1,0 +1,13 @@
+# Canonical CI/CD config for hanzoai/clickhouse-go-mock — read by the hanzoai/ci
+# reusable workflow (.hanzo/workflows/cicd.yml) and by platform.hanzo.ai.
+#
+# LIBRARY: a Go module (a sql/driver-shaped mock of clickhouse-go). No image, no
+# deploy — it ships from a tag, so the whole gate is its own test suite.
+#
+# `go test ./...` and not `go build ./...`: every file here exists to be asserted
+# against, and the suite is self-contained — the point of a mock is that it needs
+# no ClickHouse to run. A compile-only gate would pass while the expectation
+# matcher silently stopped matching, which is the one failure a mock can have.
+test:
+  - name: test
+    run: go test ./...
